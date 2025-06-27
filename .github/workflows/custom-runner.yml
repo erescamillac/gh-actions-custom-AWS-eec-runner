@@ -1,0 +1,19 @@
+# Este es un ejemplo de workflow que utiliza un AWS EC2 como runner personalizado.
+name: Custom Runner Workflow
+
+on: [push]
+
+jobs:
+  sample-job:
+    # runs-on: self-hosted
+    runs-on: [self-hosted, custom-ec2-runner]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Run a sample script
+        run: echo "This is running on a custom EC2 runner!"
+      
+      - name: List directory contents
+        run: ls -al
